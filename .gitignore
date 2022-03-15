@@ -50,3 +50,12 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+Common/bin/Debug/net6.0/Common.deps.json,Common/bin/Debug/net6.0/Common.dll.config
+Common/bin/
+Common/obj/
+UIAdmin/bin/
+UIAdmin/obj/
+WebAPIAdmin/bin/
+WebAPIAdmin/log/
+WebAPIAdmin/obj/
+.vs/UsersAdministration/v17/.suo
