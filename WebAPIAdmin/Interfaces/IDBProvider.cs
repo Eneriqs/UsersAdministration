@@ -23,15 +23,15 @@ namespace WebAPIAdmin.Interfaces
         Task<List<UserInfo>> GetUniqueUsersByNameAsync(string? userName = "");
         Task<List<UserInfo>> GetUsersBySiteAsync(string site);
         Task<UserInfo> GetUserInfoByIdAsync(string id, string site="");
-       
+
         #endregion
 
         #region Alter
-        Task<bool> AddItemsToContainerAsync(UserInfo user);
+        Task<Tuple<int, string>> AddItemsToContainerAsync(UserInfo user);
         Task<bool> AddSiteToUser(AddSiteToUserRequest addSiteToUserRequest);
         Task<bool> DeleteItemAsync(string id, string site);
         Task<bool> DeleteUserAsync(string userName);
-        Task<bool> UpdateItemAsync(UserInfo user);
+        Task<Tuple<int, string>> UpdateItemAsync(UserInfo user);
         Task<bool> InsertNotExistsItemsAsync(List<UserInfo> users);
         Task<bool> UpdatePasswordAsync(UpdatePasswordRequest updatePasswordRequest);
       

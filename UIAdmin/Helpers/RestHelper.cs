@@ -71,11 +71,11 @@ namespace UIAdmin.Helpers
             }
             else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
             {
-                errorMessage = "Bad Request";
+                errorMessage = "Invalid parameter";
             }
             else 
             {
-                errorMessage = "Error Status Code ";               
+                errorMessage = "Error Status Code";               
             } 
             Log.Here().Error(errorMessage);
             return errorMessage;
@@ -384,7 +384,7 @@ namespace UIAdmin.Helpers
         }
         public async Task<Tuple<bool, string>> CreateUser(CreateUserRequest createUserRequest)
         {
-            bool resultAlter = false;
+            Tuple<bool, string> resultAlter = new Tuple<bool, string>(false, "") ;
             string result = string.Empty;
             string url = Helper.UrlPathCombine(_baseURL, ProjectConstance.CreateUser);
             Log.Here().Information($"Call :{ url}"); 
@@ -416,7 +416,7 @@ namespace UIAdmin.Helpers
                             string dataResponse = await content.ReadAsStringAsync();
                             if (data != null)
                             {
-                                resultAlter = JsonConvert.DeserializeObject<bool>(dataResponse);
+                                resultAlter = JsonConvert.DeserializeObject<Tuple<bool, string>>(dataResponse);
                             }
                         }
                         result = CheckResponse(response);
@@ -438,7 +438,7 @@ namespace UIAdmin.Helpers
                 result = "Create user failure";
                 Log.Here().Error($"Error :{ url}", ex.Message);
             }
-            return new Tuple<bool, string>(resultAlter, result);
+            return new Tuple<bool, string>(resultAlter.Item1, result);
         }
 
         public async Task<Tuple<bool, string>> AddSiteToUser(AddSiteToUserRequest addSiteToUserRequest)
@@ -499,8 +499,8 @@ namespace UIAdmin.Helpers
        
         public async Task<Tuple<bool, string>> UpdateUser(UpdateUserRequest updateUserRequest)
         {
+            Tuple<bool, string> resultAlter = new Tuple<bool, string>(false, "");
             string result = string.Empty;
-            bool resultAlter = false;
             string url = Helper.UrlPathCombine(_baseURL,ProjectConstance.UpdateUser);
             Log.Here().Information($"Call :{ url}");
             var stopwatch = Stopwatch.StartNew();
@@ -531,7 +531,7 @@ namespace UIAdmin.Helpers
                             string dataResponse = await content.ReadAsStringAsync();
                             if (data != null)
                             {
-                                resultAlter = JsonConvert.DeserializeObject<bool>(dataResponse);
+                                resultAlter = JsonConvert.DeserializeObject <Tuple<bool, string>> (dataResponse);
                             }
                         }
                         result = CheckResponse(response);
@@ -553,7 +553,7 @@ namespace UIAdmin.Helpers
                 result = "Update user failure";
                 Log.Here().Error($"Error :{ url}", ex.Message);
             }
-            return new Tuple<bool, string>(resultAlter, result);
+            return new Tuple<bool, string>(resultAlter.Item1, result);
         }
 
         public async Task<Tuple<bool, string>> DeleteUser(string userName)

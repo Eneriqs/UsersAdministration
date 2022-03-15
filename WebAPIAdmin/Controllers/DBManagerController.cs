@@ -106,7 +106,14 @@ namespace WebAPIAdmin.Controllers
             _logger.LogInformation($"           AuthName : {userRequest.AuthName}");
             _logger.LogInformation($"           Site     : {userRequest.Site}");
             _logger.LogInformation($"           AppRole  : {userRequest.AppRole}");
-            return Ok(await _dataService.CreateUser(userRequest));
+            var res = await _dataService.CreateUser(userRequest);
+            IActionResult response;
+            switch (res.Item1){
+                case 1: response = Ok(new Tuple<bool, string>(true,res.Item2)); break;
+                case 0: response = BadRequest(new Tuple<bool, string>(false, res.Item2));break;
+                default: response = Ok(new Tuple<bool, string>(false, res.Item2)); break;
+            }
+            return response ;
         }
         [Authorize]
         [HttpPost("AddSiteToUser")]
@@ -124,7 +131,15 @@ namespace WebAPIAdmin.Controllers
             _logger.LogInformation($"           AuthName : {userRequest.AuthName}");
             _logger.LogInformation($"           Site     : {userRequest.Site}");
             _logger.LogInformation($"           AppRole  : {userRequest.AppRole}");
-            return Ok(await _dataService.UpdateUser(userRequest));
+            var res = await _dataService.UpdateUser(userRequest);
+            IActionResult response;
+            switch (res.Item1)
+            {
+                case 1: response = Ok(new Tuple<bool, string>(true, res.Item2)); break;
+                case 0: response = BadRequest(new Tuple<bool, string>(false, res.Item2)); break;
+                default: response = Ok(new Tuple<bool, string>(false, res.Item2)); break;
+            }
+            return response;
         }
         [Authorize]
         //// DELETE <Controller>/5/TestSite

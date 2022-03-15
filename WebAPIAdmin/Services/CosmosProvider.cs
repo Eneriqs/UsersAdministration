@@ -62,12 +62,26 @@ namespace WebAPIAdmin.Services
 
         }
 
-        private async Task<bool> CheckIfExistsUserWithName(string userName)
+        private async Task<List<UserInfo>> GetUserByNameOrAuthNameAsync(string userName, string authName)
         {
-            var usersWithNewName = await this.GetUserByNameAsync(userName);
+            string queryText = $"LOWER(c.userName) = '{userName.ToLower()}' OR LOWER(c.authName) = '{authName.ToLower()}'";
+            return await this.QueryItemsWhereAsync("", queryText);
+        }
+
+        private async Task<bool> CheckIfExistsUser(string userName, string authName)
+        {
+            var usersWithNewName = await this.GetUserByNameOrAuthNameAsync(userName, authName);
             return (usersWithNewName != null && usersWithNewName.Count > 0);
             
         }
+
+        private async Task<bool> CheckIfExistsEnotherUserWithName(string userName, string authName, string id)
+        {
+            var usersWithNewName = await this.GetUserByNameOrAuthNameAsync(userName, authName);
+            return usersWithNewName != null && usersWithNewName.Any(x=>x.Id != id);
+        }
+
+
         private async Task<bool> CreateNewUser(UserInfo user)
         {
             try
@@ -127,7 +141,7 @@ namespace WebAPIAdmin.Services
         {
             string queryText = $"LOWER(c.userName) = '{userName.ToLower()}'";
             return await this.QueryItemsWhereAsync("", queryText);
-        }
+        }      
 
         public async Task<List<UserInfo>> GetUsersLikeByNameAsync(string? userName = "") {
             string queryText = string.IsNullOrEmpty(userName) ? "": $"CONTAINS( LOWER(c.userName) , '{userName.ToLower()}')";
@@ -156,15 +170,16 @@ namespace WebAPIAdmin.Services
 
         #region Alter
 
-        public async Task<bool> AddItemsToContainerAsync(UserInfo user)
+        public async Task<Tuple<int, string>> AddItemsToContainerAsync(UserInfo user)
         {
-            if (await this.CheckIfExistsUserWithName(user.UserName))
+            if (await this.CheckIfExistsUser(user.UserName,  user.AuthName))
             {
-                _logger.Warning($" User {user.UserName} already exists");
-                return false;
+                _logger.Warning($" User {user.UserName} or {user.AuthName} already exists");
+                return new Tuple<int, string> (0, "User already exits");
             }
             user.AuthPwrd = BCryptNet.HashPassword(user.AuthPwrd);
-            return await CreateNewUser(user);
+            return (await CreateNewUser(user)) ? new Tuple<int, string>(1, "") : new Tuple<int, string>(-1, "Create user failure");
+            
         }    
 
         public async Task<bool> AddSiteToUser(AddSiteToUserRequest addSiteToUserRequest)
@@ -199,7 +214,7 @@ namespace WebAPIAdmin.Services
 
         public async Task<bool> DeleteUserAsync(string userName) {
 
-            List<UserInfo> users = await GetUsersLikeByNameAsync(userName);
+            List<UserInfo> users = await GetUserByNameAsync(userName);
             bool result = true;
             foreach (UserInfo item in users)
             {
@@ -216,19 +231,19 @@ namespace WebAPIAdmin.Services
             return result;
 
         }
-        public async Task<bool> UpdateItemAsync(UserInfo user)
+        public async Task<Tuple<int, string>> UpdateItemAsync(UserInfo user)
         {
             UserInfo userOld = await this.GetUserInfoByIdAsync(user.Id, user.Site);
             if (userOld ==  null )
             {
-                _logger.Warning($"User {user.Id} site {user.Site} does not exists");
-                return false;
+                _logger.Warning($"User {user.Id} site {user.Site} is not exists");
+                return new Tuple<int, string>(0,"User is not exits");
             }
-            if (userOld.UserName != user.UserName  && await this.CheckIfExistsUserWithName(user.UserName))
+            if ((userOld.UserName != user.UserName || userOld.AuthName != user.AuthName ) && await this.CheckIfExistsEnotherUserWithName(user.UserName, user.AuthName, user.Id))
             {
-                _logger.Warning($" User {user.Id} with name {user.UserName} already exists");
+                _logger.Warning($" User with name {user.UserName} or login {user.AuthName} already exists");
                 //User with name already exists
-                return false;
+                return new Tuple<int, string>(0, "User already exits");
                 
             }
             bool result = true;
@@ -249,7 +264,7 @@ namespace WebAPIAdmin.Services
                 }
               
             }
-            return result;
+            return  (result) ? new Tuple<int, string>(1,""): new Tuple<int, string>(-1, "Update user failure");
         }
 
         public async Task<bool> InsertNotExistsItemsAsync(List<UserInfo> users)

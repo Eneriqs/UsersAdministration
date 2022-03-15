@@ -23,9 +23,9 @@ namespace WebAPIAdmin.Interfaces
         #endregion
 
         #region Alter
-        Task<bool> CreateUser(CreateUserRequest userRequest);
+        Task<Tuple<int, string>> CreateUser(CreateUserRequest userRequest);
         Task<bool> AddSiteToUser(AddSiteToUserRequest addSiteToUserRequest);
-        Task<bool> UpdateUser(UpdateUserRequest userRequest);
+        Task<Tuple<int, string>> UpdateUser(UpdateUserRequest userRequest);
         Task<bool> UpdatePassword(UpdatePasswordRequest updatePasswordRequest);
         Task<bool> DeleteUser(string userName);
         Task<bool> DeleteSiteForUser(string userId, string site);

@@ -125,7 +125,7 @@ namespace WebAPIAdmin.Services
 
         #region Alter
 
-        public async Task<bool> CreateUser(CreateUserRequest userRequest)
+        public async Task<Tuple<int, string>> CreateUser(CreateUserRequest userRequest)
         {
             UserInfo user = new UserInfo()
             {
@@ -144,7 +144,7 @@ namespace WebAPIAdmin.Services
             return await _dbProvider.AddSiteToUser(addSiteToUserRequest);
         }
 
-        public async Task<bool> UpdateUser(UpdateUserRequest userRequest)
+        public async Task<Tuple<int, string>> UpdateUser(UpdateUserRequest userRequest)
         {
             UserInfo user = new UserInfo()
             {
