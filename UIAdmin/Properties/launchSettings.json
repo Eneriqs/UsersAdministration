@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "UIAdmin": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
