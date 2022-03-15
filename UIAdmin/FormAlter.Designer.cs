@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlGeneral = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -36,6 +37,7 @@
             this.pnlTop = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.tmErrorMessage = new System.Windows.Forms.Timer(this.components);
             this.pnlGeneral.SuspendLayout();
             this.pnlAlter.SuspendLayout();
             this.pnlTop.SuspendLayout();
@@ -135,6 +137,11 @@
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Administartion ENERIQS";
             // 
+            // tmErrorMessage
+            // 
+            this.tmErrorMessage.Interval = 3000;
+            this.tmErrorMessage.Tick += new System.EventHandler(this.tmErrorMessage_Tick);
+            // 
             // FormAlter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -164,5 +171,6 @@
         private PictureBox pictureBox1;
         private Label lblTitle;
         private Label lblStatus;
+        private System.Windows.Forms.Timer tmErrorMessage;
     }
 }

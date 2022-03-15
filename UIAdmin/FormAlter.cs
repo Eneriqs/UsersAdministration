@@ -42,6 +42,15 @@ namespace UIAdmin
             //};
             AlterStatusMessage += (status, details) =>
             {
+                if (!string.IsNullOrEmpty(details))
+                {
+                    tmErrorMessage.Enabled = true;
+                    tmErrorMessage.Start();
+                }
+                else {
+                    tmErrorMessage.Stop();
+                    tmErrorMessage.Enabled = false;
+                }
                 lblStatus.Text = details;
                 lblStatus.ForeColor = (status)?  Color.Blue : Color.Red;
             };
@@ -100,7 +109,15 @@ namespace UIAdmin
             pnlAlter.Controls.Remove(_currentUserControl);
             BtnOkClicked = null;
             this.Close();
-        } 
+        }
+   
+
+        private void tmErrorMessage_Tick(object sender, EventArgs e)
+        {
+            lblStatus.Text = "";
+            tmErrorMessage.Stop();
+            tmErrorMessage.Enabled = false;
+        }  
         #endregion
     }
 }
