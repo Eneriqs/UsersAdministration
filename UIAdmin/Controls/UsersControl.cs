@@ -91,7 +91,7 @@ namespace UIAdmin.Controls
             InitUsersList();
             dgUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgUsers.ClearSelection();
-            dgUsers.CurrentCell = null;
+            dgUsers.CurrentCell = null;          
         }
 
         private string GetEnumValue(UserRole role)
@@ -163,7 +163,7 @@ namespace UIAdmin.Controls
                 
                
 
-                var resultDelete = await RestHelper.Instance.DeleteSiteForUser(_currentUser.Id, _currentUser.Site);
+                var resultDelete = await RestHelper.Instance.DeleteSiteForUser(_currentUser.Id, _currentUser.Site, _currentUser.UserName);
                 ///
                 if (!string.IsNullOrEmpty(resultDelete.Item2))
                 {
@@ -431,6 +431,7 @@ namespace UIAdmin.Controls
             
             if (this.Visible) 
             {
+                txtUserFilter.Text = "";
                 StartedPosition();
                 InitSitesList();
             }

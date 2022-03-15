@@ -89,7 +89,7 @@ namespace UIAdmin.Controls.ControlsFormAlter
             }
             ComboboxItem roleItem = cmbRole.SelectedItem as ComboboxItem;
             if (roleItem == null) {
-                MessageBox.Show("Role does not valid");
+                MessageBox.Show("Invalid Role");
                 return;
             }
             var result = await RestHelper.Instance.CreateUser(new Common.Models.CreateUserRequest
@@ -172,7 +172,7 @@ namespace UIAdmin.Controls.ControlsFormAlter
         {
             if (string.IsNullOrEmpty(cmbSite.Text) || (!string.IsNullOrEmpty(_messageErrorSite) && cmbSite.Text.Equals(_newItemSiteText)))
             {
-                epCreateUser.SetError(cmbSite, _messageErrorSite);
+                //epCreateUser.SetError(cmbSite, _messageErrorSite);
             }
             else
             {

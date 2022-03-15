@@ -28,7 +28,7 @@ namespace UIAdmin.Helpers
         Task<Tuple<bool, string>> UpdateUser(UpdateUserRequest updateUserRequest);
         Task<Tuple<bool, string>> UpdatePassword(UpdatePasswordRequest updatePasswordRequest);
         Task<Tuple<bool, string>> DeleteUser(string userName);
-        Task<Tuple<bool, string>> DeleteSiteForUser(string id, string site);
+        Task<Tuple<bool, string>> DeleteSiteForUser(string id, string site, string userName);
         #endregion
         #region Maintenances
         Task<Tuple<bool, string>> ExportDBToFile();

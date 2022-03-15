@@ -598,11 +598,11 @@ namespace UIAdmin.Helpers
             return new Tuple<bool, string>(resultAlter, result);
         }
 
-        public async Task<Tuple<bool, string>> DeleteSiteForUser(string id, string site)
+        public async Task<Tuple<bool, string>> DeleteSiteForUser(string id, string site, string userName)
         {
             string result = string.Empty;
             bool resultAlter = false;
-            string url = $"{Helper.UrlPathCombine(_baseURL,ProjectConstance.DeleteUser)}/{id}/{site}";
+            string url = $"{Helper.UrlPathCombine(_baseURL,ProjectConstance.DeleteUser)}/{id}/{site}/{userName}";
             Log.Here().Information($"Call :{ url}");
             var stopwatch = Stopwatch.StartNew();
             try

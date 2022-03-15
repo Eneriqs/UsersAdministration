@@ -120,8 +120,7 @@ namespace UIAdmin.Controls
             {
 
                 string userId = dgUsers.SelectedRows[0].Cells["ClmId"].Value.ToString();
-
-                var resultDelete = await RestHelper.Instance.DeleteSiteForUser(userId, _currentSite);
+                var resultDelete = await RestHelper.Instance.DeleteSiteForUser(userId, _currentSite, userName);
 
                 if (!string.IsNullOrEmpty(resultDelete.Item2))
                 {
@@ -262,6 +261,7 @@ namespace UIAdmin.Controls
         {
             if (this.Visible) 
             {
+                txtSiteFilter.Text = "";
                 StartedPosition();
             }
             

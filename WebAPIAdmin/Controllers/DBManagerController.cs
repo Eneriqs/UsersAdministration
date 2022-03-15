@@ -143,9 +143,12 @@ namespace WebAPIAdmin.Controllers
         }
         [Authorize]
         //// DELETE <Controller>/5/TestSite
-        [HttpDelete("{id}/{site}")]
-        public async Task<IActionResult> DeleteSiteForUser(string id, string site)
+        [HttpDelete("{id}/{site}/{userName}")]
+        public async Task<IActionResult> DeleteSiteForUser(string id, string site, string userName)
         {
+            _logger.LogInformation($"DeleteSiteForUser UserName : {userName}");
+            _logger.LogInformation($"           Site : {site}");
+
             return Ok(await _dataService.DeleteSiteForUser(id, site));
         }
         [Authorize]

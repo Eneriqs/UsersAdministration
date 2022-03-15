@@ -93,7 +93,7 @@ namespace UIAdmin.Controls.ControlsFormAlter
             ComboboxItem roleItem = cmbRole.SelectedItem as ComboboxItem;
             if (roleItem == null)
             {
-                MessageBox.Show("Role does not valid");
+                MessageBox.Show("Invalid Role");
                 return;
             }
             var result = await RestHelper.Instance.UpdateUser(new Common.Models.UpdateUserRequest
