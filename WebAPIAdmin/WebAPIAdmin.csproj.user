@@ -5,6 +5,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <ActiveDebugProfile>WebAPIAdmin</ActiveDebugProfile>
-    <NameOfLastUsedPublishProfile>C:\Eneriqs\UsersAdministration\WebAPIAdmin\Properties\PublishProfiles\UMGAdmin - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>C:\Eneriqs\UsersAdministration\WebAPIAdmin\Properties\PublishProfiles\UserManagerAdm - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
