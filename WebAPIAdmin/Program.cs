@@ -50,16 +50,16 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(c =>
 {
-c.SwaggerDoc("v1", new OpenApiInfo { Title = "TheCodeBuzz-Service", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "TheCodeBuzz-Service", Version = "v1" });
 
-c.AddSecurityDefinition("basic", new OpenApiSecurityScheme
-{
-    Name = "Authorization",
-    Type = SecuritySchemeType.Http,
-    Scheme = "basic",
-    In = ParameterLocation.Header,
-    Description = "Basic Authorization header using the Bearer scheme."
-});
+    c.AddSecurityDefinition("basic", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "basic",
+        In = ParameterLocation.Header,
+        Description = "Basic Authorization header using the Bearer scheme."
+    });
 
 });
 

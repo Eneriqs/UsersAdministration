@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UIAdmin", "UIAdmin\UIAdmin.csproj", "{A3D21C73-E6F4-4546-871A-490EC55FAA45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EneriqsUserManagement", "EneriqsUserManagement\EneriqsUserManagement.csproj", "{6069CE8F-A70F-4199-8ABF-234549D99BC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A3D21C73-E6F4-4546-871A-490EC55FAA45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3D21C73-E6F4-4546-871A-490EC55FAA45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3D21C73-E6F4-4546-871A-490EC55FAA45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6069CE8F-A70F-4199-8ABF-234549D99BC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6069CE8F-A70F-4199-8ABF-234549D99BC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6069CE8F-A70F-4199-8ABF-234549D99BC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6069CE8F-A70F-4199-8ABF-234549D99BC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
