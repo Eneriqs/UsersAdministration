@@ -59,3 +59,6 @@ WebAPIAdmin/bin/
 WebAPIAdmin/log/
 WebAPIAdmin/obj/
 .vs/UsersAdministration/v17/.suo
+/.vs
+/EneriqsUserManagement/bin
+/EneriqsUserManagement/obj
