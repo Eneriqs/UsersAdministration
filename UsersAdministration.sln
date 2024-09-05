@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UIAdmin", "UIAdmin\UIAdmin.csproj", "{A3D21C73-E6F4-4546-871A-490EC55FAA45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EneriqsUserManagement", "EneriqsUserManagement\EneriqsUserManagement.csproj", "{6069CE8F-A70F-4199-8ABF-234549D99BC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EneriqsUserManagement", "EneriqsUserManagement\EneriqsUserManagement.csproj", "{6069CE8F-A70F-4199-8ABF-234549D99BC5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrintingLib", "..\Elencon\PrintingLib\PrintingLib.csproj", "{A8079447-97B5-40A1-8A5E-A83016BB0464}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6069CE8F-A70F-4199-8ABF-234549D99BC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6069CE8F-A70F-4199-8ABF-234549D99BC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6069CE8F-A70F-4199-8ABF-234549D99BC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8079447-97B5-40A1-8A5E-A83016BB0464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8079447-97B5-40A1-8A5E-A83016BB0464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8079447-97B5-40A1-8A5E-A83016BB0464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8079447-97B5-40A1-8A5E-A83016BB0464}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
